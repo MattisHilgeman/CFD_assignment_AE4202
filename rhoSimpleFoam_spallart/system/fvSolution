@@ -78,9 +78,16 @@ PIMPLE
 
 relaxationFactors
 {
+    fields
+    {
+        p               0.2;   // Heavy relaxation for pressure to stabilize SIMPLE pressure-correction
+        rho             0.2;   // Matches pressure relaxation for compressible coupling
+    }
     equations
     {
-        ".*"     1;
+        U               0.5;   // Momentum
+        e               0.5;   // Energy (use 'h' if your thermo package uses enthalpy)
+        nuTilda         0.5;   // Spalart-Allmaras variable
     }
 }
 
