@@ -3,15 +3,15 @@ Include "guide_vane.geo";
 //////////////////////////////////////////////////////////////////////////////////
 // Parameters: l = length, t = top, b = bottom                                  //
 //////////////////////////////////////////////////////////////////////////////////
-l_inlet = 100;
+l_inlet = 70;
 l_outlet = 70;
 c = 67.6;
 h = 57.5;
 l_buffer = 20;
 split_frac = 0.83;
-wake_frac = 0.07;           // Fraction of bottom tube where the wake ends
-wake_arc_frac = 0.8;       // Tube diameter at trailing edge that spans the tube
-n_vane_norm_pass_frac = 0.2;     // Fraction of incoming nodes that passes the wake of the vane
+wake_frac = 0.06;           // Fraction of bottom tube where the wake ends
+wake_arc_frac = 0.7;       // Tube diameter at trailing edge that spans the tube
+n_vane_norm_pass_frac = 0.31;     // Fraction of incoming nodes that passes the wake of the vane
 n_vane_aft_bottom = 100;
 n_vane_aft_bottom_curve_frac = 0.6;
 n_vane_aft_top = 100;
