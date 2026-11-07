@@ -22,13 +22,14 @@ boundaryField
 {
     inlet
     {
-      type             inletOutlet;
-      inletValue       $internalField;
+      type             calculated;
+      value            uniform 0;
     }
 
     outlet
     {
-      type              zeroGradient;
+      type              calculated;
+      value		uniform 0;
     }
 
     side
@@ -38,14 +39,13 @@ boundaryField
 
     ".*Wall"
     {
-        type            nutUSpaldingWallFunction;
-        value           uniform 0;
+        type            	cyclicAMI;
     }
     
     vane
     {
-        type            nutUSpaldingWallFunction;
-        value           uniform 0;
+        type            	nutUSpaldingWallFunction;
+        value           	uniform 0;
     }
 }
 

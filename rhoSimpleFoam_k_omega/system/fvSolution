@@ -62,7 +62,7 @@ SIMPLE
         "(k|omega|e)"   1e-4;
     }
 
-    nNonOrthogonalCorrectors 0;
+    nNonOrthogonalCorrectors 2;
     pMinFactor      0.1;
     pMaxFactor      2;
 }
@@ -76,11 +76,19 @@ PIMPLE
     pMaxFactor      2;
 }
 
-relaxationFactors
+relaxationFactors // Changed by AI
 {
+    fields
+    {
+        p               0.15;
+    }
     equations
     {
-        ".*"     1;
+        U               0.7;
+        e               0.2;
+        k               0.3;   // Lowered for stability
+        omega           0.4;   // Lowered for stability
+        nut             0.5;
     }
 }
 

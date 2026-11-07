@@ -40,7 +40,7 @@ divSchemes
     div(phi,K)      $energy;
     div(phi,Ekp)    $energy;
 
-    turbulence      Gauss linearUpwind limited;
+    turbulence      bounded Gauss linearUpwind limited;
     div(phi,k)      $turbulence;
     div(phi,omega)  $turbulence;
 

@@ -18,17 +18,20 @@ dimensions      [0 2 -1 0 0 0 0];
 
 internalField   uniform 5e-6;
 
+nu_t		0.10760021665952281;
+
 boundaryField
 {
     inlet
     {
-      type             inletOutlet;
-      inletValue         $internalField;
+      type             fixedValue;
+      value            uniform $nu_t;
     }
 
     outlet
     {
-      type              zeroGradient;
+      type              inletOutlet;
+      inletValue	uniform $nu_t;
     }
 
     side
@@ -36,16 +39,15 @@ boundaryField
         type            empty;
     }
 
-    vane
-    {
-        type            nutUSpaldingWallFunction;
-        value           uniform 0;
-    }
-    
     ".*Wall"
     {
-        type            nutUSpaldingWallFunction;
-        value           uniform 0;
+        type            	cyclicAMI;
+    }
+    
+    vane
+    {
+        type            	nutUSpaldingWallFunction;
+        value           	uniform 0;
     }
 }
 

@@ -18,7 +18,7 @@ thermoType
 {
     type            hePsiThermo;
     mixture         pureMixture;
-    transport       const;
+    transport       sutherland;
     thermo          hConst;
     equationOfState perfectGas;
     specie          specie;
@@ -38,8 +38,9 @@ mixture // air at room temperature (293 K)
     }
     transport
     {
-        mu          1.82e-05;
-        Pr          0.71;
+        As	    1.4792e-06;
+    	Ts          110.4;
+	Pr	    0.72;
     }
 }
 

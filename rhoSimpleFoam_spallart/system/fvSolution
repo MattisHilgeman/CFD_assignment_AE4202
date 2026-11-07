@@ -81,7 +81,7 @@ relaxationFactors
     fields
     {
         p               0.2;   // Heavy relaxation for pressure to stabilize SIMPLE pressure-correction
-        rho             0.2;   // Matches pressure relaxation for compressible coupling
+        rho             0.05;   // Matches pressure relaxation for compressible coupling
     }
     equations
     {

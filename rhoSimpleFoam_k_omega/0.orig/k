@@ -18,14 +18,15 @@ kInlet          0.01;
 
 dimensions      [0 2 -2 0 0 0 0];
 
-internalField   uniform 9.6e-05; 
+internalField   uniform 787.6; 
 
 boundaryField
 {
     inlet
     {
-      type             inletOutlet; 
-      inletValue       uniform 9.6e-05;
+      type             turbulentIntensityKineticEnergyInlet; 
+      intensity	       0.06;
+      value            $internalField;
     }
 
     outlet
@@ -41,8 +42,7 @@ boundaryField
 
     ".*Wall"
     {
-        type            kqRWallFunction;
-        value           0.;
+        type            cyclicAMI;
     }
     
     vane

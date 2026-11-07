@@ -24,14 +24,15 @@ boundaryField
 {
     inlet
     {
-        type            inletOutlet;
-        inletValue      $internalField;
+        type            pressureInletOutletVelocity;
+        value           uniform (0 0 0);
     }
 
     ".*Wall"
     {
-        type            noSlip;
+        type            cyclicAMI;
     }
+
     vane
     {
         type            noSlip;
@@ -39,7 +40,9 @@ boundaryField
     
     outlet
     {
-        type            zeroGradient;
+        type            pressureInletOutletVelocity;
+	value           uniform (0 0 0);
+	
     }
 
     side
@@ -49,6 +52,7 @@ boundaryField
 
     #includeEtc "caseDicts/setConstraintTypes"
 }
+
 
 
 // ************************************************************************* //

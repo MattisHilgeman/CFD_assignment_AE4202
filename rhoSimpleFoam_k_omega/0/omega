@@ -16,13 +16,13 @@ FoamFile
 
 dimensions      [0 0 -1 0 0 0 0];
 
-internalField   uniform 21.7732421580727; 
+internalField   uniform 7319; 
 boundaryField
 {
     inlet
     {
       type              inletOutlet;
-      inletValue        uniform 21.7732421580727;
+      inletValue        $internalField;
     }
 
     outlet
@@ -38,9 +38,7 @@ boundaryField
 
     ".*Wall"
     {
-        type            omegaWallFunction;
-        blended         true;
-        value           $internalField;
+        type            cyclicAMI;
     }
     
     vane

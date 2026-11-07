@@ -1,0 +1,95 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2206                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+solvers
+{
+    p
+    {
+        solver          GAMG;
+        smoother        DICGaussSeidel;
+        tolerance       1e-6;
+        relTol          0.01;
+    }
+
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    "(rho|U|k|omega|e|nuTilda)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0.1;
+    }
+
+    "(rho|U|k|omega|e)Final"
+    {
+        $U;
+        relTol          0;
+    }
+    
+    nuTildaFinal
+    {
+        $nuTilda;
+        relTol          0;
+    }
+
+}
+
+SIMPLE
+{
+    residualControl
+    {
+        p               1e-4;
+        U               1e-4;
+        "(k|omega|e)"   1e-4;
+    }
+
+    nNonOrthogonalCorrectors 0;
+    pMinFactor      0.1;
+    pMaxFactor      2;
+}
+
+PIMPLE
+{
+    nCorrectors              2;
+    nNonOrthogonalCorrectors 1;
+    nOuterCorrectors         1;
+    pMinFactor      0.1;
+    pMaxFactor      2;
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p               0.2;   // Heavy relaxation for pressure to stabilize SIMPLE pressure-correction
+        rho             0.2;   // Matches pressure relaxation for compressible coupling
+    }
+    equations
+    {
+        U               0.5;   // Momentum
+        e               0.5;   // Energy (use 'h' if your thermo package uses enthalpy)
+        nuTilda         0.5;   // Spalart-Allmaras variable
+    }
+}
+
+
+// ************************************************************************* //

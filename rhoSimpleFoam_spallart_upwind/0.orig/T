@@ -10,29 +10,45 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volScalarField;
-    object      k;
+    object      T;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-kInlet          0.01;
+Tinlet          300;
 
-dimensions      [0 2 -2 0 0 0 0];
+dimensions      [0 0 0 1 0 0 0];
 
-internalField   uniform $kInlet;
+internalField   uniform $Tinlet;
 
 boundaryField
 {
-    freestream
+    inlet
     {
-        type            inletOutlet;
-        inletValue      uniform $kInlet;
-        value           uniform $kInlet;
+        type            totalTemperature;
+	T0		uniform 420;
+	gamma		1.4;
+	
     }
 
-    wall
+    outlet
     {
-        type            kqRWallFunction;
-        value           uniform $kInlet;
+        type            zeroGradient;
+    }
+
+    side
+    {
+        type            empty;
+    }
+
+    ".*Wall"
+    {
+        type            cyclicAMI;
+    }
+
+    vane
+    {
+        type            fixedValue;
+	value		uniform 300; 
     }
 
     #includeEtc "caseDicts/setConstraintTypes"
@@ -40,3 +56,4 @@ boundaryField
 
 
 // ************************************************************************* //
+

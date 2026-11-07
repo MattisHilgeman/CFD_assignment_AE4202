@@ -39,16 +39,14 @@ boundaryField
 
     ".*Wall"
     {
-        type            compressible::alphatWallFunction;
-        Prt             0.85;
-        value           uniform 0;
+        type            	cyclicAMI;
     }
 
     vane
     {
-        type            compressible::alphatWallFunction;
-        Prt             0.85;
-        value           uniform 0;
+        type            	compressible::alphatWallFunction;
+        Prt             	0.85;
+        value           	uniform 0;
     }
     #includeEtc "caseDicts/setConstraintTypes"
 }
